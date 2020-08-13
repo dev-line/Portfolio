@@ -1,0 +1,647 @@
+
+::-webkit-scrollbar {
+   width: 8px;
+ }
+ 
+ ::-webkit-scrollbar-track {
+   background: #f1f1f1; 
+ }
+  
+ ::-webkit-scrollbar-thumb {
+   background: #888; 
+ }
+
+ ::-webkit-scrollbar-thumb:hover {
+   background: #555; 
+ }
+
+a {
+   transition: all 0.5s ease;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ margin-bottom: 0.66667rem;
+ font-family: inherit;
+ font-weight: 600;
+ line-height: 1.25;
+ color: #152c5b;
+ letter-spacing: 0px;
+}
+
+img {
+   -webkit-user-drag: none!important;
+}
+
+.smaller {
+   font-size: 70%;
+   font-weight: 600;
+}
+
+.brkts::before {
+   content: '( ';
+}
+.brkts::after {
+   content: ' )';
+}
+
+.bg-cover {
+   background-size: cover!important;
+   background-repeat: no-repeat!important;
+   background-position: center!important;
+}
+
+.u-overlay {
+ position: absolute;
+ top: 0;
+ right: 0;
+ bottom: 0;
+ left: 0;
+ background: rgba(0, 0, 0, 0.4);
+}
+
+.filter {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    transition: all .3s ease;
+}
+
+.filter:hover {
+   opacity: 1;
+}
+
+.btn-icon-only {
+   display: flex !important;
+   justify-content: center !important;
+   align-items: center !important;
+   width: 1.75rem;
+   height: 1.75rem;
+}
+
+.btn-menu {
+   color: #252a34;
+   background: #e2e6ea;
+   border-color: transparent;
+   font-weight: 600;
+}
+
+.btn-outline-border {
+   background-color: #fff;
+   border-color: #e5e5e5;
+   color: #111;
+ }
+ .btn-outline-border.active {
+   border-color: #1f1f1f;
+ }
+
+.rounded-lg-top {
+   border-top-left-radius: 15px;
+   border-top-right-radius: 15px;
+}
+
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.custom-switch {
+   top: -4px;
+ }
+
+ .custom-switch .custom-control-label {
+   cursor: pointer;
+ }
+
+ .custom-control-label::before {
+   background-color: #E5E9F2;
+   border: none;
+   -webkit-box-shadow: none;
+   box-shadow: none;
+ }
+ 
+ .custom-control-label::before,
+ .custom-control-label::after {
+   top: 0;
+ }
+ 
+ .custom-control-input:checked ~ .custom-control-label::before {
+   background: #614ad3;
+   border-color: #614ad3;
+ }
+
+ .custom-switch .custom-control-label::before {
+   left: -3.25rem;
+   width: 3.857rem;
+   height: 1.5rem;
+   border: none;
+   border-radius: 6.1875rem;
+   top: .25rem!important;
+ }
+ 
+ .custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+   -webkit-transform: translateX(1rem);
+   transform: translateX(2.375rem);
+ }
+
+
+/* ========== Ads Size ========== */
+
+.top-nav-ad {
+   width: 630px;
+   height: 90px;
+}
+
+.middle-page-ad {
+   width: 1110px;
+   height: 180px;
+}
+
+.sideBar-ad {
+   width: 245px; /*330px*/
+   height: 305px;
+}
+
+
+/* Collapse */
+.link-collapse[aria-expanded="false"] .link-collapse-default {
+   display: inline-block;
+ }
+ 
+ .link-collapse[aria-expanded="false"] .link-collapse-active {
+   display: none;
+ }
+ 
+ .link-collapse[aria-expanded="true"] .link-collapse-default {
+   display: none;
+ }
+ 
+ .link-collapse[aria-expanded="true"] .link-collapse-active {
+   display: inline-block;
+ }
+ 
+
+/* ========== Spacer ========== */
+
+.spacer-10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+ }
+
+.spacer-15 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+ }
+ 
+ .spacer-20 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+ }
+ 
+ .spacer-30 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+ }
+ 
+ .spacer-40 {
+    padding-top: 40px;
+    padding-bottom: 40px;
+ }
+ 
+ .spacer-50 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+ }
+ 
+ .spacer-60 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+ }
+ 
+ .spacer-70 {
+    padding-top: 70px;
+    padding-bottom: 70px;
+ }
+ 
+ .spacer-80 {
+    padding-top: 80px;
+    padding-bottom: 80px;
+ }
+ 
+ .spacer-90 {
+    padding-top: 90px;
+    padding-bottom: 90px;
+ }
+ 
+ .spacer-100 {
+    padding-top: 100px;
+    padding-bottom: 100px;
+ }
+ 
+ .spacer-120 {
+    padding-top: 120px;
+    padding-bottom: 120px;
+ }
+ 
+ .spacer-150 {
+    padding-top: 150px;
+    padding-bottom: 150px;
+ }
+ 
+ .spacer-170 {
+   padding-top: 170px;
+   padding-bottom: 170px;
+}
+
+.spacer-180 {
+   padding-top: 180px;
+   padding-bottom: 180px;
+}
+
+ .spacer-200 {
+    padding-top: 200px;
+    padding-bottom: 200px;
+ }
+ 
+
+ @media (min-width: 576px) { 
+   .spacer-sm-10 {
+      padding-top: 10px;
+      padding-bottom: 10px;
+   }
+  
+  .spacer-sm-15 {
+      padding-top: 15px;
+      padding-bottom: 15px;
+   }
+   
+   .spacer-sm-20 {
+      padding-top: 20px;
+      padding-bottom: 20px;
+   }
+   
+   .spacer-sm-30 {
+      padding-top: 30px;
+      padding-bottom: 30px;
+   }
+   
+   .spacer-sm-40 {
+      padding-top: 40px;
+      padding-bottom: 40px;
+   }
+   
+   .spacer-sm-50 {
+      padding-top: 50px;
+      padding-bottom: 50px;
+   }
+   
+   .spacer-sm-60 {
+      padding-top: 60px;
+      padding-bottom: 60px;
+   }
+   
+   .spacer-sm-70 {
+      padding-top: 70px;
+      padding-bottom: 70px;
+   }
+   
+   .spacer-sm-80 {
+      padding-top: 80px;
+      padding-bottom: 80px;
+   }
+   
+   .spacer-sm-90 {
+      padding-top: 90px;
+      padding-bottom: 90px;
+   }
+   
+   .spacer-sm-100 {
+      padding-top: 100px;
+      padding-bottom: 100px;
+   }
+   
+   .spacer-sm-120 {
+      padding-top: 120px;
+      padding-bottom: 120px;
+   }
+   
+   .spacer-sm-150 {
+      padding-top: 150px;
+      padding-bottom: 150px;
+   }
+   
+   .spacer-sm-170 {
+     padding-top: 170px;
+     padding-bottom: 170px;
+  }
+  
+  .spacer-sm-180 {
+     padding-top: 180px;
+     padding-bottom: 180px;
+  }
+  
+   .spacer-sm-200 {
+      padding-top: 200px;
+      padding-bottom: 200px;
+   }
+
+  }
+
+ @media (min-width: 768px) { 
+   .spacer-md-10 {
+      padding-top: 10px;
+      padding-bottom: 10px;
+   }
+  
+  .spacer-md-15 {
+      padding-top: 15px;
+      padding-bottom: 15px;
+   }
+   
+   .spacer-md-20 {
+      padding-top: 20px;
+      padding-bottom: 20px;
+   }
+   
+   .spacer-md-30 {
+      padding-top: 30px;
+      padding-bottom: 30px;
+   }
+   
+   .spacer-md-40 {
+      padding-top: 40px;
+      padding-bottom: 40px;
+   }
+   
+   .spacer-md-50 {
+      padding-top: 50px;
+      padding-bottom: 50px;
+   }
+   
+   .spacer-md-60 {
+      padding-top: 60px;
+      padding-bottom: 60px;
+   }
+   
+   .spacer-md-70 {
+      padding-top: 70px;
+      padding-bottom: 70px;
+   }
+   
+   .spacer-md-80 {
+      padding-top: 80px;
+      padding-bottom: 80px;
+   }
+   
+   .spacer-md-90 {
+      padding-top: 90px;
+      padding-bottom: 90px;
+   }
+   
+   .spacer-md-100 {
+      padding-top: 100px;
+      padding-bottom: 100px;
+   }
+   
+   .spacer-md-120 {
+      padding-top: 120px;
+      padding-bottom: 120px;
+   }
+   
+   .spacer-md-150 {
+      padding-top: 150px;
+      padding-bottom: 150px;
+   }
+   
+   .spacer-md-170 {
+     padding-top: 170px;
+     padding-bottom: 170px;
+  }
+  
+  .spacer-md-180 {
+     padding-top: 180px;
+     padding-bottom: 180px;
+  }
+  
+   .spacer-md-200 {
+      padding-top: 200px;
+      padding-bottom: 200px;
+   }
+  }
+ 
+ @media (min-width: 992px) { 
+   .spacer-lg-10 {
+      padding-top: 10px;
+      padding-bottom: 10px;
+   }
+  
+  .spacer-lg-15 {
+      padding-top: 15px;
+      padding-bottom: 15px;
+   }
+   
+   .spacer-lg-20 {
+      padding-top: 20px;
+      padding-bottom: 20px;
+   }
+   
+   .spacer-lg-30 {
+      padding-top: 30px;
+      padding-bottom: 30px;
+   }
+   
+   .spacer-lg-40 {
+      padding-top: 40px;
+      padding-bottom: 40px;
+   }
+   
+   .spacer-lg-50 {
+      padding-top: 50px;
+      padding-bottom: 50px;
+   }
+   
+   .spacer-lg-60 {
+      padding-top: 60px;
+      padding-bottom: 60px;
+   }
+   
+   .spacer-lg-70 {
+      padding-top: 70px;
+      padding-bottom: 70px;
+   }
+   
+   .spacer-lg-80 {
+      padding-top: 80px;
+      padding-bottom: 80px;
+   }
+   
+   .spacer-lg-90 {
+      padding-top: 90px;
+      padding-bottom: 90px;
+   }
+   
+   .spacer-lg-100 {
+      padding-top: 100px;
+      padding-bottom: 100px;
+   }
+   
+   .spacer-lg-120 {
+      padding-top: 120px;
+      padding-bottom: 120px;
+   }
+   
+   .spacer-lg-150 {
+      padding-top: 150px;
+      padding-bottom: 150px;
+   }
+   
+   .spacer-lg-170 {
+     padding-top: 170px;
+     padding-bottom: 170px;
+  }
+  
+  .spacer-lg-180 {
+     padding-top: 180px;
+     padding-bottom: 180px;
+  }
+  
+   .spacer-lg-200 {
+      padding-top: 200px;
+      padding-bottom: 200px;
+   }
+  }
+ 
+ @media (min-width: 1200px) { 
+   .spacer-xl-10 {
+      padding-top: 10px;
+      padding-bottom: 10px;
+   }
+  
+  .spacer-xl-15 {
+      padding-top: 15px;
+      padding-bottom: 15px;
+   }
+   
+   .spacer-xl-20 {
+      padding-top: 20px;
+      padding-bottom: 20px;
+   }
+   
+   .spacer-xl-30 {
+      padding-top: 30px;
+      padding-bottom: 30px;
+   }
+   
+   .spacer-xl-40 {
+      padding-top: 40px;
+      padding-bottom: 40px;
+   }
+   
+   .spacer-xl-50 {
+      padding-top: 50px;
+      padding-bottom: 50px;
+   }
+   
+   .spacer-xl-60 {
+      padding-top: 60px;
+      padding-bottom: 60px;
+   }
+   
+   .spacer-xl-70 {
+      padding-top: 70px;
+      padding-bottom: 70px;
+   }
+   
+   .spacer-xl-80 {
+      padding-top: 80px;
+      padding-bottom: 80px;
+   }
+   
+   .spacer-xl-90 {
+      padding-top: 90px;
+      padding-bottom: 90px;
+   }
+   
+   .spacer-xl-100 {
+      padding-top: 100px;
+      padding-bottom: 100px;
+   }
+   
+   .spacer-xl-120 {
+      padding-top: 120px;
+      padding-bottom: 120px;
+   }
+   
+   .spacer-xl-150 {
+      padding-top: 150px;
+      padding-bottom: 150px;
+   }
+   
+   .spacer-xl-170 {
+     padding-top: 170px;
+     padding-bottom: 170px;
+  }
+  
+  .spacer-xl-180 {
+     padding-top: 180px;
+     padding-bottom: 180px;
+  }
+  
+   .spacer-xl-200 {
+      padding-top: 200px;
+      padding-bottom: 200px;
+   }
+  }
+
+  .btn-brand {
+    background: #646EFF;
+    border: #646EFF;
+    color: #fff;
+  }
+  
+  .btn-brand:hover {
+    background: #675ef3;
+    border: #675ef3;
+    color: #fff;
+  }
+  
+  .btn-soft-brand {
+    background: transparent;
+    border: 1px solid #646EFF;
+    color: #646EFF;
+  }
+  
+  .btn-soft-brand:hover {
+    background: #675ef3;
+    border: 1px solid #675ef3;
+    color: #fff;
+  }
+  
+  .text-brand {
+    color: #646EFF;
+  }
+
+  .bg-flat {
+    background: #252a34;
+    border: 30px solid #ff2e63;
+}
+#__next-prerender-indicator {
+   display: none;
+ }

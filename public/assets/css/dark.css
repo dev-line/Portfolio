@@ -1,0 +1,16 @@
+
+
+.bg-nav,
+.modal-content,
+.card,
+.form-control,
+.input-group-prepend .input-group-text {
+    background: #222734;
+    border-color: rgba(255, 255, 255, .5);
+}
+
+.form-control:focus {
+    background: #222734;
+    border-color: currentColor;
+    box-shadow: none;
+}
