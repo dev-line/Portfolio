@@ -39,7 +39,7 @@ export default function ClacOptions({data}) {
               </div>
 
               {/* <!-- Total --> */}
-              <div className="position-fixed bottom-0 right-0 w-15 text-center">
+              <div className="position-fixed bottom-0 right-0 w-100 w-md-15 text-center">
                 <div className="spacer-10 bg-success py-3">
                   <h6 className="font-size-2 mb-0 font-weight-bold text-white">Total :<span className="currency pl-2 font-size-1">{Price}</span></h6>
                 </div>
