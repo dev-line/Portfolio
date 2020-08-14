@@ -1,7 +1,17 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
+import Head from 'next/head'
 
 export default function ProjetCotenu({data}) {
+  useLayoutEffect(() => {
+    setInterval(() => {
+      $('p[data-f-id="pbf"]').remove()
+    }, 100);
+  }, [])
   return (
+    <React.Fragment>
+      <Head>
+    <script src="/assets/js/jquery.min.js"></script>
+  </Head>
     <div className="modal fade" id="workInfo" tabindex="-1" role="dialog" aria-labelledby="workInfoLabel" aria-hidden="true">
     <div className="modal-dialog modal-fullscreen">
       <div className="modal-content">
@@ -22,5 +32,7 @@ export default function ProjetCotenu({data}) {
       </div>
     </div>
   </div>
+  <script src="/assets/js/jquery.min.js"></script>
+    </React.Fragment>
   )
 }

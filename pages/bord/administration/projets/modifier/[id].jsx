@@ -1,45 +1,18 @@
 import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import dynamic from "next/dynamic";
 import DASH from "../../../../../components/DASHBOARD";
-import Flatpickr from "react-flatpickr";
-import Select from "react-select";
 const  {API_URL} = process.env
 import Axios from "axios";
 import { useRouter, Router } from 'next/router'
 import { parseCookies } from "nookies";
 import { WaitingAlerts, ErrorAlert, SeccessAlert } from "../../../../../components/Alerts";
 
-const Editor = dynamic(import("@latticejs/froala-editor"),{ssr: false});
-
+dynamic(import("jodit"), { ssr: false });
+const JoditEditor = dynamic(import("jodit-react"), { ssr: false });
 export default function newPost() {
   const router = useRouter()
 
-  const Config = {
-    language: "fr",
-    placeholderText: "créer votre text",
-    imageUpload: true,
-    imageUploadURL: "http://localhost:1337/upload",
-    //imageManagerLoadURL: 'http://localhost:1337/upload/files',
-    events: {
-      "image.beforeUpload": function (files) {
-        var editor = this;
-        if (files.length) {
-          // Create a File Reader.
-          var reader = new FileReader();
-          // Set the reader to insert images when they are loaded.
-          reader.onload = function (e) {
-            var result = e.target.result;
-            editor.image.insert(result, null, null, editor.image.get());
-          };
-          // Read image as base64.
-          reader.readAsDataURL(files[0]);
-        }
-        editor.popups.hideAll();
-        // Stop default upload chain.
-        return false;
-      },
-    },
-  };
+  
   // States for Craetion Content
   const [Project, setProject] = useState({})
   const editor = useRef();
@@ -48,7 +21,7 @@ export default function newPost() {
   const [Thumbnail, SetThumbnail] = useState({url: null});
   const [CurrentTitle, setCurrentTitle] = useState()
   const [isDraft, setIsDraft] = useState(false);
-  const [content, setContent] = useState("");
+  var content = Project.id? Project.Content:""
   //UserInfo
   const ThisUser = parseCookies("auth");
   const CheckImg = (e) => {
@@ -62,7 +35,7 @@ export default function newPost() {
 
   useEffect(() => {
     setCurrentTitle(Project.Title)
-    setContent(Project.Content)
+    content = Project.Content
     SetThumbnail(Project.Thumbnail)
     setIsDraft(!Project.Published)
   }, [Project]);
@@ -127,10 +100,18 @@ await Axios.put(`${API_URL}/projects/${id}`, NewPost, {
         ErrorAlert('Veuillez vérifier les données saisies')
       });
   };
-  const handleChange = (data) => {
-    setContent(data);
+  const config = {
+    readonly: false,
+    language: "fr",
+    uploader: {
+      insertImageAsBase64URI: true,
+      imagesExtensions: ["jpg", "png", "jpeg", "gif"],
+    },
   };
-  if (!Project.Title) {
+  const handleChange = (value) => {
+    content = value
+  };
+  if (!Project.id) {
 		GetProject()
 	}
   return (
@@ -161,10 +142,11 @@ await Axios.put(`${API_URL}/projects/${id}`, NewPost, {
                   </h5>
                 </div>
                 {/* <!-- Content --> */}
-                <Editor
-                  config={Config}
-                  model={content}
-                  onModelChange={handleChange}
+                <JoditEditor
+                  value={Project.id? Project.Content: ""}
+                  onBlur={handleChange}
+                  config={config}
+                  onChange={handleChange}
                 />
               </div>
             </div>

@@ -1,51 +1,23 @@
 import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import dynamic from "next/dynamic";
 import DASH from "../../../../components/DASHBOARD";
-import Flatpickr from "react-flatpickr";
-import Select from "react-select";
-const  {API_URL} = process.env;
+
+const { API_URL } = process.env;
 import Axios from "axios";
 import { parseCookies } from "nookies";
 import { WaitingAlerts, SeccessAlert } from "../../../../components/Alerts";
 import { useRouter } from "next/router";
-
-const Editor = dynamic(import("@latticejs/froala-editor"),{ssr: false});
+dynamic(import("jodit"), { ssr: false });
+const JoditEditor = dynamic(import("jodit-react"), { ssr: false });
 
 export default function newPost() {
-  const router = useRouter()
-
-  const Config = {
-    language: "fr",
-    placeholderText: "créer votre text",
-    imageUpload: true,
-    imageUploadURL: "http://localhost:1337/upload",
-    //imageManagerLoadURL: 'http://localhost:1337/upload/files',
-    events: {
-      "image.beforeUpload": function (files) {
-        var editor = this;
-        if (files.length) {
-          // Create a File Reader.
-          var reader = new FileReader();
-          // Set the reader to insert images when they are loaded.
-          reader.onload = function (e) {
-            var result = e.target.result;
-            editor.image.insert(result, null, null, editor.image.get());
-          };
-          // Read image as base64.
-          reader.readAsDataURL(files[0]);
-        }
-        editor.popups.hideAll();
-        // Stop default upload chain.
-        return false;
-      },
-    },
-  };
+  const router = useRouter();
   // States for Craetion Content
   const Title = useRef();
   const [imgtmp, setimgTmp] = useState();
-  const [Thumbnail, SetThumbnail] = useState();
   const [isDraft, setIsDraft] = useState(false);
-  const [content, setContent] = useState("");
+  // const [content, setContent] = useState("");
+  var content = ""
   //UserInfo
   const ThisUser = parseCookies("auth");
   const CheckImg = (e) => {
@@ -57,19 +29,14 @@ export default function newPost() {
       : (setimgTmp(null), false);
   };
 
-  useEffect(() => {
-    $(".flatpickr-input").addClass(
-      "form-control form-control-sm font-size-1 text-muted-f rounded shadow-sm"
-    );
-    console.log(ThisUser);
-  }, []);
+  
   const ResetForm = () => {
     $("form")[0].reset();
     setContent("");
   };
   const handleCreatePost = async (e) => {
     e.preventDefault();
-    WaitingAlerts()
+    WaitingAlerts();
     let bodyFormData = new FormData();
     const NewPost = {
       Title: Title.current.value.trim(),
@@ -100,41 +67,29 @@ export default function newPost() {
               console.log(err.response.data.message);
             });
         }
-        SeccessAlert('Le projet a été ajouté avec succès')
-        router.push('/bord/administration/projets')
+        SeccessAlert("Le projet a été ajouté avec succès");
+        router.push("/bord/administration/projets");
       })
       .catch((err) => {
-        ErrorAlert('Veuillez vérifier les données saisies')
+        ErrorAlert("Veuillez vérifier les données saisies");
       });
   };
   //Text Editor Config
   const config = {
-    readonly: false, // all options from https://xdsoft.net/jodit/doc/
+    readonly: false,
+    language: "fr",
     uploader: {
-      url: `${API_URL}/postes`,
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${ThisUser.jwt}`,
-      },
-      queryBuild: function (data) {
-        return JSON.stringify(data);
-      },
-      contentType: function () {
-        return "application/json";
-      },
-      buildData: function (data) {
-        return { hello: "Hello world" };
-      },
+      insertImageAsBase64URI: true,
+      imagesExtensions: ["jpg", "png", "jpeg", "gif"],
     },
-    language: "ar",
   };
-  const handleChange = (data) => {
-    setContent(data);
+  const handleChange = (value) => {
+    content = value
   };
   useLayoutEffect(() => {
-    $(".Projects").addClass("active")
-    $(".Projects").trigger("click")
-  }, [])
+    $(".Projects").addClass("active");
+    $(".Projects").trigger("click");
+  }, [API_URL]);
   return (
     <DASH title="Nouveau Projet">
       <form className="col-md-10" onSubmit={handleCreatePost}>
@@ -162,10 +117,10 @@ export default function newPost() {
                   </h5>
                 </div>
                 {/* <!-- Content --> */}
-                <Editor
-                  config={Config}
-                  model={content}
-                  onModelChange={handleChange}
+                <JoditEditor
+                  value={content}
+                  config={config}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -186,7 +141,11 @@ export default function newPost() {
                       >
                         <div className="media mt-n1">
                           <img
-                            src={imgtmp ? `${URL.createObjectURL(imgtmp[0])}`:"/assets/img/person.jpg"}
+                            src={
+                              imgtmp
+                                ? `${URL.createObjectURL(imgtmp[0])}`
+                                : "/assets/img/person.jpg"
+                            }
                             className="u-sm-avatar rounded"
                             alt="..."
                           />
