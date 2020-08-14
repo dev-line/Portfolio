@@ -137,7 +137,7 @@ await Axios.put(`${API_URL}/projects/${id}`, NewPost, {
                   />
                 </div>
                 <div className="mt-5 mb-0">
-                  <h5 className="font-size-2 font-weight-bold text-muted-f mb-0">
+                  <h5 className="font-size-2 font-weight-bold text-muted-f mb-3">
                     Contenu de l'article
                   </h5>
                 </div>
