@@ -6,13 +6,12 @@ import { parseCookies } from "nookies";
 import dynamic from "next/dynamic";
 import { WaitingAlerts, ErrorAlert, SeccessAlert } from "../../../components/Alerts";
 import Loading from "../../../components/Loading";
-const Editor = dynamic(import("@latticejs/froala-editor"),{ssr: false});
+const JoditEditor = dynamic(import("jodit-react"), { ssr: false });
 
 export default function info() {
   const ThisUser = parseCookies("auth");
   const [Infos, setInfos] = useState({ id: null });
   const [Status, setStatus] = useState("Load");
-  const [content, setContent] = useState("");
   const Facebook = useRef();
   const Instagram = useRef();
   const Twitter = useRef();
@@ -20,37 +19,21 @@ export default function info() {
   const Phone = useRef();
   const Address = useRef();
   const Email = useRef();
-  const Config = {
+  var content = Infos.id? Infos.AboutMe:""
+
+  const config = {
+    readonly: false,
     language: "fr",
-    placeholderText: "créer votre text",
-    imageUpload: true,
-    imageUploadURL: "http://localhost:1337/upload",
-    //imageManagerLoadURL: 'http://localhost:1337/upload/files',
-    events: {
-      "image.beforeUpload": function (files) {
-        var editor = this;
-        if (files.length) {
-          // Create a File Reader.
-          var reader = new FileReader();
-          // Set the reader to insert images when they are loaded.
-          reader.onload = function (e) {
-            var result = e.target.result;
-            editor.image.insert(result, null, null, editor.image.get());
-          };
-          // Read image as base64.
-          reader.readAsDataURL(files[0]);
-        }
-        editor.popups.hideAll();
-        // Stop default upload chain.
-        return false;
-      },
+    uploader: {
+      insertImageAsBase64URI: true,
+      imagesExtensions: ["jpg", "png", "jpeg", "gif"],
     },
   };
   const GetInfos = async () => {
     await Axios.get(`${API_URL}/informations`)
       .then((res) => {
         setInfos(res.data);
-        setContent(res.data.AboutMe)
+        content = res.data.AboutMe
         setStatus("Done");
       })
       .catch((err) => {
@@ -88,7 +71,7 @@ export default function info() {
       });
   };
   const handleChange = (data) => {
-    setContent(data);
+    content = data
   };
   useLayoutEffect(() => {
     $(".InfosLink").addClass("active")
@@ -103,14 +86,14 @@ export default function info() {
                 {/* <!--  --> */}
                 <div className="col-12 col-md-10 mt-5 mt-lg-0 order-1 order-lg-0">
                   <div className="mb-3">
-                    <h5 className="font-size-2 font-weight-bold text-muted-f mb-0">
+                    <h5 className="font-size-2 font-weight-bold text-muted-f mb-3">
                       À propos de moi
                     </h5>
-                    <br/>
-                    <Editor
-                  config={Config}
-                  model={content}
-                  onModelChange={handleChange}
+                    <JoditEditor
+                  value={Infos.id? Infos.AboutMe: ""}
+                  onBlur={handleChange}
+                  config={config}
+                  onChange={handleChange}
                 />
                   </div>
                   <div className="mb-3">
