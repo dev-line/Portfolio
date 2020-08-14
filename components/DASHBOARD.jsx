@@ -25,6 +25,7 @@ export default function DASH({ children, title }) {
     setInterval(() => {
        $('a[href^="https://www.froala.com/wysiwyg-editor?k=u"]').remove()
        $('a[href^="https://froala.com/wysiwyg-editor"]').attr("href","#")
+       $('p[data-f-id="pbf"]').remove()
      }, 100)
 
   }, [])
