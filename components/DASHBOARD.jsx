@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Router from "next/router";
@@ -20,10 +20,12 @@ export default function DASH({ children, title }) {
   const [sidebar, setSidebar] = useState("sidebar-hidden");
   useEffect(() => {
     $("body").addClass("bg-light-f");
-     $('a[href^="https://www.froala.com/wysiwyg-editor?k=u"]').remove()
-    $('a[href^="https://froala.com/wysiwyg-editor"]').text("Powered By HaxCodes")
-    $('a[href^="https://froala.com/wysiwyg-editor"]').removeAttr("href").css("cursor","pointer")
   }, []);
+  useLayoutEffect(() => {
+    $('a[href^="https://www.froala.com/wysiwyg-editor?k=u"]').remove()
+    $('a[href^="https://froala.com/wysiwyg-editor"]').text("Powered By HaxCodes")
+    $('a[href^="https://froala.com/wysiwyg-editor"]').attr("href","#")
+  }, [])
   const CheckUser = async()=>{
    if (ThisUser.jwt) {
     await Axios.get(`${API_URL}/users/me`,{headers: { Authorization: `Bearer ${ThisUser.jwt}`}}).then(
