@@ -22,9 +22,11 @@ export default function DASH({ children, title }) {
     $("body").addClass("bg-light-f");
   }, []);
   useLayoutEffect(() => {
-    $('a[href^="https://www.froala.com/wysiwyg-editor?k=u"]').remove()
+    setTimeout(() => {
+      $('a[href^="https://www.froala.com/wysiwyg-editor?k=u"]').remove()
     $('a[href^="https://froala.com/wysiwyg-editor"]').text("Powered By HaxCodes")
     $('a[href^="https://froala.com/wysiwyg-editor"]').attr("href","#")
+    }, 2000);
   }, [])
   const CheckUser = async()=>{
    if (ThisUser.jwt) {
