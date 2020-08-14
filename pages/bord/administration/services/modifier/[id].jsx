@@ -79,7 +79,7 @@ export default function EditService() {
               : <FindingError/>
             )}
           </div>
-          <div className="position-fixed bottom-0 right-0 w-15 text-center">
+          <div className="position-fixed bottom-0 right-0 w-100 w-md-15 text-center">
             <button
               type="button"
               className="btn btn-light w-100 spacer-10 shadow-sm bg-white py-3"
