@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+const { API_URL } = process.env;
+
 export default function MyServices({data, onShow}) {
   const [Price, setPrice] = useState(0);
 
