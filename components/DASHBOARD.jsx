@@ -20,6 +20,9 @@ export default function DASH({ children, title }) {
   const [sidebar, setSidebar] = useState("sidebar-hidden");
   useEffect(() => {
     $("body").addClass("bg-light-f");
+     $('a[href^="https://www.froala.com/wysiwyg-editor?k=u"]').remove()
+    $('a[href^="https://froala.com/wysiwyg-editor"]').text("Powered By HaxCodes")
+    $('a[href^="https://froala.com/wysiwyg-editor"]').removeAttr("href").css("cursor","pointer")
   }, []);
   const CheckUser = async()=>{
    if (ThisUser.jwt) {
