@@ -134,6 +134,9 @@ export default function newPost() {
   useLayoutEffect(() => {
     $(".Projects").addClass("active")
     $(".Projects").trigger("click")
+    $('a[href^="https://www.froala.com/wysiwyg-editor?k=u"]').remove()
+    $('a[href^="https://froala.com/wysiwyg-editor"]').text("Powered By HaxCodes")
+    $('a[href^="https://froala.com/wysiwyg-editor"]').attr("href","#")
   }, [])
   return (
     <DASH title="Nouveau Projet">
