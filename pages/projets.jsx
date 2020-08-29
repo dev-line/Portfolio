@@ -30,7 +30,7 @@ export default function projects() {
       $(".ProjectsLink").addClass("active")
     }, [])
   return (
-    <VISITOR title=" - Projets">
+    <VISITOR title=" Projets">
       {/* <!-- ========== HERO ========== --> */}
         <div className="spacer-100 spacer-lg-200 content-centered work">
             <div className="container">

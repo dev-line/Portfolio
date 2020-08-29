@@ -23,20 +23,16 @@ export default function VISITOR({ children,title }) {
       console.log(err);
     })
   }, [])
-  useLayoutEffect(() => {
+  useEffect(() => {
     AOS.init();
-    setTimeout(() => {
       $("#navMobile").modal("hide")
       $(".modal-backdrop").remove()
       $("body").css({
         "overflow": "auto",
         "padding":0 
       })
-    }, 1000);
+      $('body').scrollTop()
   }, []);
-  useEffect(() => {
-    $('body').scrollTop()
-  }, [])
   return (
     <React.Fragment>
       <Head>
@@ -45,14 +41,13 @@ export default function VISITOR({ children,title }) {
         <link rel="stylesheet" href="/assets/css/main.css" />
         <link rel="stylesheet" href="/assets/css/dark.css" />
         <script src="/assets/js/jquery.min.js"></script>
-  <title>{`${SiteName}${title?title:''}`}</title>
+  <title>{`${SiteName}${SiteName && title ? ' | ' + title: ''}`}</title>
       </Head>
       {Status?(
         <main>
-        <div className="position-absolute w-100 sticky" id="to-top">
+        <div className="position-absolute w-100 sticky z-index-4" id="to-top">
           <nav
             className="navbar navbar-expand-lg navbar-light px-md-8"
-            data-aos="fade-right"
           >
             <Link href="/">
               <a className="navbar-brand text-white">

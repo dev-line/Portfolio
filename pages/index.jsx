@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import MesProjets from "../components/MesProjets";
 import ProjetCotenu from "../components/ProjetCotenu";
 import ConatctSection from "../components/ConatctSection";
@@ -13,6 +13,7 @@ export default function index() {
   const [Projects, setProjects] = useState([]);
   const [ThisPost, setThisPost] = useState({})
   const [Status, setStatus] = useState("Loading");
+  const [Infos, setInfos] = useState();
   const GetProjects = async () => {
     await Axios.get(`${ API_URL }/projects?Published=${true}&_limit=3&_sort=title:desc`).then((res) => {
       setProjects(res.data);
@@ -21,7 +22,15 @@ export default function index() {
     })
     setStatus("Done")
   };
-  useLayoutEffect(() => {
+  const GetInfos = ()=>{
+    Axios.get(`${API_URL}/settings`).then((res=>{
+      setInfos(res.data)
+    })).catch(err=>{
+      console.log(err);
+    })
+  }
+  useEffect(() => {
+    GetInfos()
     $(".HomeLink").addClass("active")
   }, [])
   if (Status == "Loading") {
@@ -33,12 +42,12 @@ export default function index() {
   return (
     <VISITOR>
       {/* <!-- ========== HERO ========== --> */}
-        <div className="vh-100 content-centered hero">
+        <div className="vh-100 content-centered bg-cover" style={{background: Infos? `url(${Infos.HomeBg?API_URL + Infos.HomeBg.url:""})`:""}}>
+          <div className="hero"></div>
             <div className="container">
                <div className="hero-content text-left">
-                <h2 className="text-white font-weight-bold w-100 w-lg-60" data-aos="fade-right">I design digital crafts for clients.</h2>
-                <span className="text-white pt-0 pb-5 pt-md-4 pb-md-7 d-block w-100 w-md-65 w-lg-50" data-aos="fade-left">I create meaningful solutions for your brands and products.
-                    Give your customers the best experience possible.</span>
+                <h2 className="text-white font-weight-bold w-100 w-lg-60" data-aos="fade-right">{Infos?Infos.HomeTitle:""}</h2>
+                <span className="text-white pt-0 pb-5 pt-md-4 pb-md-7 d-block w-100 w-md-65 w-lg-50" data-aos="fade-left">{Infos?Infos.HomeSubTitle:""}</span>
                     <div data-aos="fade-up">
                       <Link href="#wrk">
                       <button type="button" className="btn btn-lg text-white d-flex">

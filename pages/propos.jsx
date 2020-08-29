@@ -26,7 +26,7 @@ export default function about() {
     $(".ProposLink").addClass("active")
   }, [])
   return (
-    <VISITOR title=" - À Propos">
+    <VISITOR title="À Propos">
        {/* <!-- ========== HERO ========== --> */}
         <div className="spacer-100 spacer-md-150">
             <div className="container text-light">

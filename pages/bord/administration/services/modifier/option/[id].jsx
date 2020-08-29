@@ -1,27 +1,28 @@
 import React, { useState, useRef } from "react";
-import DASH from "../../../../../components/DASHBOARD";
-import GérerLesOption from "../../../../../components/GérerLesOption";
+import DASH from "../../../../../../components/DASHBOARD";
+import GérerLesSousOptions from "../../../../../../components/GérerLesSous-Option";
 import Axios from "axios";
 const { API_URL } = process.env;
 import { useRouter, Router } from "next/router";
 import { parseCookies } from "nookies";
-import { ErrorAlert, SeccessAlert, WaitingAlerts } from "../../../../../components/Alerts";
-import Loading from "../../../../../components/Loading";
-import FindingError from "../../../../../components/FindingError";
-export default function EditService() {
+import { ErrorAlert, SeccessAlert, WaitingAlerts } from "../../../../../../components/Alerts";
+import Loading from "../../../../../../components/Loading";
+import FindingError from "../../../../../../components/FindingError";
+export default function EditOption() {
   const router = useRouter();
   const ThisUser = parseCookies("auth");
   const [Status, setStatus] = useState("Loading");
   const [Options, setOptions] = useState([]);
   const Name = useRef();
+  const Price = useRef();
   const [Title, setTitle] = useState('')
   const GetOptions = async () => {
     const { id } = await router.query;
     if (id) {
-      await Axios.get(`${API_URL}/services/${id}`)
+      await Axios.get(`${API_URL}/options/${id}`)
         .then((res) => {
-          setOptions(res.data.Options);
-          setTitle(res.data.Title)
+          setOptions(res.data.SousOptions);
+          setTitle(res.data.Name)
         })
         .catch((err) => {
           console.log(err);
@@ -35,9 +36,11 @@ export default function EditService() {
     const { id } = await router.query;
     const NewOption = {
       Name: Name.current.value,
-      Services: [id],
+      Price: Price.current.value,
+      Option: [id]
     };
-    await Axios.post(`${API_URL}/options`, NewOption, {
+    console.log(NewOption);
+    await Axios.post(`${API_URL}/Sous-Options`, NewOption, {
       headers: { Authorization: `Bearer ${ThisUser.jwt}` },
     })
       .then((res) => {
@@ -59,7 +62,7 @@ export default function EditService() {
     }
   }
   return (
-    <DASH title={`${Title} Service`}>
+    <DASH title={`${Title} Option`}>
       <div className="col-md-10">
         <div className="container spacer-70">
           <div className="row">
@@ -67,7 +70,7 @@ export default function EditService() {
               Options.length > 0
               ? Options.map((option) => {
                   return (
-                    <GérerLesOption
+                    <GérerLesSousOptions
                       key={option.id}
                       data={option}
                       onAction={RefrechList}
@@ -85,7 +88,7 @@ export default function EditService() {
               data-target="#addOption"
             >
               <h6 className="font-size-2 mb-0 font-weight-bold text-muted-f">
-                Ajouter une option
+                Ajouter une sous-option
               </h6>
             </button>
           </div>
@@ -124,6 +127,13 @@ export default function EditService() {
                   id="serviceName"
                   placeholder="Nom d'option"
                   ref={Name}
+                />
+                <input
+                  type="number"
+                  className="form-control form-control-sm text-muted"
+                  id="servicePrice"
+                  placeholder="Prix d'option"
+                  ref={Price}
                 />
               </div>
               <div className="modal-footer border-0">

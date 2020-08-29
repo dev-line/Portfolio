@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect, useEffect } from "react";
 import VISITOR from "../components/VISITOR";
 import ConatctSection from "../components/ConatctSection";
 import Footer from "../components/Footer";
@@ -29,11 +29,11 @@ export default function services() {
   const ShowPost = (data) => {
     return setThisPost(data);
   };
-  useLayoutEffect(() => {
+  useEffect(() => {
     $(".ServicesLink").addClass("active");
   }, []);
   return (
-    <VISITOR title=" - Services">
+    <VISITOR title=" Services">
       {/* <!-- Hero --> */}
       <div className="spacer-100 content-centered">
         {/* <!-- Cards Section --> */}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Axios from "axios";
 import { parseCookies } from "nookies";
 import { WaitingAlerts, SeccessAlert, ErrorAlert } from "./Alerts";
+import { T } from "antd/lib/upload/utils";
 export default function GérerLesServices({ data, onAction }) {
   const [ThisService, setThisService] = useState(data)
   const [imgtmp, setimgTmp] = useState();
@@ -74,10 +75,14 @@ export default function GérerLesServices({ data, onAction }) {
   }
   const GetPrice = ()=>{
     var Total = 0
-    ThisService.Options.map(opt=>{
-     Total+=opt.Price
+    ThisService.Options.map( opt=>{
+      Axios.get(`${API_URL}/Options/${opt.id}`).then( res=>{
+       res.data.SousOptions.map(SousOpt=>{
+         Total += Number(SousOpt.Price)
+       })
+       setPrice(Total);
+     })
     })
-    setPrice(Total)
   }
   return (
     <React.Fragment>
@@ -186,7 +191,11 @@ export default function GérerLesServices({ data, onAction }) {
               <div className="form-group">
                 <label
                   className="btn u-xl-avatar rounded bg-cover file-attachment-btn"
-                  style={{ background: "url(/assets/img/misc/empty.png)" }}
+                  style={{
+                    background :imgtmp ? `url(${URL.createObjectURL(imgtmp[0])})`:
+                    data.Thumbnail
+                      ? `url(${API_URL + data.Thumbnail.url})`:"url(/assets/img/misc/empty.png)"
+                          }}
                   for={`service-img${ThisService.id}`}
                 >
                   <input

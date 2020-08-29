@@ -1,58 +1,40 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Axios from "axios";
 import { parseCookies } from "nookies";
 import { WaitingAlerts, ErrorAlert, SeccessAlert } from "./Alerts";
-import Link from "next/link";
-const { API_URL } = process.env;
+const  {API_URL} = process.env
 
-export default function GérerLesOption({ data, onAction }) {
+export default function GérerLesSousOptions({ data, onAction }) {
   const ThisUser = parseCookies("auth");
-  const [Price, setPrice] = useState(0)
   const [ThisOption, setThisOption] = useState(data);
   const Name = useRef();
-  const GetPrice = ()=>{
-    var Total = 0
-      Axios.get(`${API_URL}/Options/${data.id}`).then( res=>{
-       res.data.SousOptions.map(SousOpt=>{
-         Total += Number(SousOpt.Price)
-       })
-       setPrice(Total);
-     })
-  }
-  useEffect(() => {
-    GetPrice()
-  }, [])
+  const Price = useRef();
   const EditOption = async (e) => {
     e.preventDefault();
-    WaitingAlerts();
+    WaitingAlerts()
     const ThisOption = { Name: Name.current.value, Price: Price.current.value };
     await Axios.put(`${API_URL}/options/${data.id}`, ThisOption, {
       headers: { Authorization: `Bearer ${ThisUser.jwt}` },
     })
       .then((res) => {
         setThisOption(res.data);
-        SeccessAlert("Cette option a été modifiée avec succès");
+        SeccessAlert('Cette option a été modifiée avec succès')
       })
-      .catch((err) => {
-        ErrorAlert("Veuillez vérifier les données saisies");
-      });
+      .catch(err=>{ErrorAlert('Veuillez vérifier les données saisies')});
   };
-  const RemoveOption = () => {
-    WaitingAlerts();
+  const RemoveOption = ()=>{
+    WaitingAlerts()
     Axios.delete(`${API_URL}/options/${data.id}`, {
       headers: { Authorization: `Bearer ${ThisUser.jwt}` },
     })
       .then((res) => {
-        onAction();
-        $(`#delOption${data.id}`).modal("hide");
-        SeccessAlert("cette option a été supprimée.");
+        onAction()
+        $(`#delOption${data.id}`).modal('hide');
+        SeccessAlert('cette option a été supprimée.')
       })
-      .catch((err) => {
-        ErrorAlert(
-          "Une erreur s’est produite lors de la suppression s’il vous plaît essayer à nouveau"
-        );
-      });
-  };
+      .catch(err=>{ErrorAlert('Une erreur s’est produite lors de la suppression s’il vous plaît essayer à nouveau')
+    });
+  }
   return (
     <React.Fragment>
       <div className="col-sm-6 col-md-4 px-2 mb-3">
@@ -69,7 +51,7 @@ export default function GérerLesOption({ data, onAction }) {
                     {ThisOption.Name}
                   </span>
                   <small className="d-block text-muted currency">
-                    {Price}
+                    {ThisOption.Price}
                   </small>
                 </div>
                 <div className="my-auto">
@@ -88,19 +70,13 @@ export default function GérerLesOption({ data, onAction }) {
                       className="dropdown-menu"
                       aria-labelledby="serviceOptionsMenu"
                     >
-                      <Link href="/bord/administration/services/modifier/option/[id]" as={`/bord/administration/services/modifier/option/${data.id}`}>
-                      <a class="dropdown-item mb-3">
-                        <i class="fal fa-plus pr-2"></i>Ajouter une sous-option
-                      </a>
-                      </Link>
-
                       <a
                         className="dropdown-item mb-3"
                         href="#"
                         data-toggle="modal"
                         data-target={`#editServiceInfo${data.id}`}
                       >
-                        <i className="fal fa-edit pr-2"></i>Modification Rapide
+                        <i className="fal fa-edit pr-2"></i>Modifier
                       </a>
                       <a
                         className="dropdown-item"
@@ -155,7 +131,14 @@ export default function GérerLesOption({ data, onAction }) {
                 defaultValue={ThisOption.Name}
                 ref={Name}
               />
-
+              <input
+                type="number"
+                className="form-control form-control-sm text-muted"
+                id="servicePrice"
+                placeholder="Prix d'option"
+                defaultValue={ThisOption.Price}
+                ref={Price}
+              />
             </div>
             <div className="modal-footer border-0">
               <button
@@ -205,9 +188,7 @@ export default function GérerLesOption({ data, onAction }) {
               <button
                 type="button"
                 className="btn btn-sm btn-danger-f text-white font-weight-semi-bold"
-                onClick={() => {
-                  RemoveOption();
-                }}
+                onClick={()=>{RemoveOption()}}
               >
                 Supprimer
               </button>

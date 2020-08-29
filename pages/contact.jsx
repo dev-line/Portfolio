@@ -42,7 +42,7 @@ const [MyEmail, setMyEmail] = useState("")
     GetMyEmail()
   }, [])
   return (
-    <VISITOR title=" - Contact">
+    <VISITOR title=" Contact">
       {/* <!-- Content --> */}
       <div className="spacer-100 content-centered">
         <div className="container">

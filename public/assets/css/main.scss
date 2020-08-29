@@ -84,11 +84,15 @@ main {
 }
 
 
-.hero {
-    background: linear-gradient(rgba(23, 26, 35, .5)),
-    url('../img/bg/bg-hero1.jpg') center no-repeat;
-    background-size: cover;
-}
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgba(23, 26, 35, .5))!important;
+  }
 
 .hero-content {
     h2 {
@@ -180,6 +184,25 @@ main {
 .cta {
     background: #16a085;
     font-size: 18px;
+}
+
+#MenuAccordion #MenuCollapseSubOption .list-group .list-group-item {
+    position: relative;
+    padding: 1rem;
+    margin-bottom: 0;
+    border-radius: 0;
+    text-align: left;
+    &:last-child {
+        .form-group {
+            margin-bottom: 0;
+        }
+    }
+    .custom-control-label::before, .custom-control-label::after {
+        top: .15rem!important;
+    }
+    label {
+        cursor: pointer;
+    }
 }
 
  /* ==============================
@@ -443,9 +466,6 @@ main {
         background: #171a23;
         padding: 1.25rem 0.875rem;
     }
-    .hero {
-        background-position: 60%;
-    }
     .hero-content {
         h2 {
             font-size: 3rem;
@@ -492,22 +512,59 @@ main {
     &.btn:not([disabled]):not(.disabled).active{
         background-color: #614ad3;
     }
-    .custom-checkbox .custom-control-label::before {
+    .cs-cbox .custom-control-label::before {
         background: transparent!important;
     }
-    .custom-control-label {
+    .cs-cbox .custom-control-label {
         transform: translate(-2px, -2px);
         &::after {
             width: 1.75rem;
             height: 1.75rem;
         }
     }
-    .custom-checkbox {
+    .cs-cbox {
         position: relative;
         width: 1.75rem;
         height: 1.75rem;
         border-radius: 50%;
         border: 2px solid #fff;
     }
+    .custom-control {
+        min-height: 1rem;
+    }
+}
 
+
+
+.btn-brand {
+    background: #646EFF;
+    border: #646EFF;
+    color: #fff;
+  }
+  
+  .btn-brand:hover {
+    background: #675ef3;
+    border: #675ef3;
+    color: #fff;
+  }
+  
+  .btn-soft-brand {
+    background: transparent;
+    border: 1px solid #646EFF;
+    color: #646EFF;
+  }
+  
+  .btn-soft-brand:hover {
+    background: #675ef3;
+    border: 1px solid #675ef3;
+    color: #fff;
+  }
+  
+  .text-brand {
+    color: #646EFF;
+  }
+
+  .bg-flat {
+    background: #252a34;
+    border: 30px solid #ff2e63;
 }

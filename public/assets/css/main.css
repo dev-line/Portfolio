@@ -91,10 +91,15 @@ main {
   transition: all .3s ease;
 }
 
-.hero {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(23, 26, 35, 0.5))), url("../img/bg/bg-hero1.jpg") center no-repeat;
-  background: linear-gradient(rgba(23, 26, 35, 0.5)), url("../img/bg/bg-hero1.jpg") center no-repeat;
-  background-size: cover;
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(23, 26, 35, 0.5))) !important;
+  background: linear-gradient(rgba(23, 26, 35, 0.5)) !important;
 }
 
 .hero-content h2 {
@@ -193,6 +198,26 @@ main {
 .cta {
   background: #16a085;
   font-size: 18px;
+}
+
+#MenuAccordion #MenuCollapseSubOption .list-group .list-group-item {
+  position: relative;
+  padding: 1rem;
+  margin-bottom: 0;
+  border-radius: 0;
+  text-align: left;
+}
+
+#MenuAccordion #MenuCollapseSubOption .list-group .list-group-item:last-child .form-group {
+  margin-bottom: 0;
+}
+
+#MenuAccordion #MenuCollapseSubOption .list-group .list-group-item .custom-control-label::before, #MenuAccordion #MenuCollapseSubOption .list-group .list-group-item .custom-control-label::after {
+  top: 0.15rem !important;
+}
+
+#MenuAccordion #MenuCollapseSubOption .list-group .list-group-item label {
+  cursor: pointer;
 }
 
 /* ==============================
@@ -423,19 +448,6 @@ main {
 @media (max-width: 992px) {
   #sidebar {
     height: 100%;
-    width: 100%;
-    position: fixed;
-    z-index: 1050;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    background-color: #111;
-    overflow-y: hidden;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-  }
-  #sidebar-hidden {
-    height: 100%;
     width: 0;
     position: fixed;
     z-index: 1050;
@@ -453,9 +465,6 @@ main {
   .navbar-collapse {
     background: #171a23;
     padding: 1.25rem 0.875rem;
-  }
-  .hero {
-    background-position: 60%;
   }
   .hero-content h2 {
     font-size: 3rem;
@@ -499,25 +508,62 @@ main {
   background-color: #614ad3;
 }
 
-.op-list .custom-checkbox .custom-control-label::before {
+.op-list .cs-cbox .custom-control-label::before {
   background: transparent !important;
 }
 
-.op-list .custom-control-label {
+.op-list .cs-cbox .custom-control-label {
   -webkit-transform: translate(-2px, -2px);
           transform: translate(-2px, -2px);
 }
 
-.op-list .custom-control-label::after {
+.op-list .cs-cbox .custom-control-label::after {
   width: 1.75rem;
   height: 1.75rem;
 }
 
-.op-list .custom-checkbox {
+.op-list .cs-cbox {
   position: relative;
   width: 1.75rem;
   height: 1.75rem;
   border-radius: 50%;
   border: 2px solid #fff;
+}
+
+.op-list .custom-control {
+  min-height: 1rem;
+}
+
+.btn-brand {
+  background: #646EFF;
+  border: #646EFF;
+  color: #fff;
+}
+
+.btn-brand:hover {
+  background: #675ef3;
+  border: #675ef3;
+  color: #fff;
+}
+
+.btn-soft-brand {
+  background: transparent;
+  border: 1px solid #646EFF;
+  color: #646EFF;
+}
+
+.btn-soft-brand:hover {
+  background: #675ef3;
+  border: 1px solid #675ef3;
+  color: #fff;
+}
+
+.text-brand {
+  color: #646EFF;
+}
+
+.bg-flat {
+  background: #252a34;
+  border: 30px solid #ff2e63;
 }
 /*# sourceMappingURL=main.css.map */

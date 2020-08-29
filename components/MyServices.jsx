@@ -1,3 +1,4 @@
+import Axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
 
@@ -5,16 +6,35 @@ const { API_URL } = process.env;
 
 export default function MyServices({data, onShow}) {
   const [Price, setPrice] = useState(0);
+  const [AllOptions, setAllOptions] = useState([])
 
   useEffect(() => {
-    GetPrice()
+    GetOptions()
   }, [data])
+  useEffect(() => {
+    GetPrice()
+  }, [AllOptions])
+
+  const GetOptions = ()=>{
+    data.Options.map(item=>{
+      Axios.get(`${API_URL}/Options/${item.id}`).then(res=>{
+        const ThisOption = res.data
+        setAllOptions([...AllOptions, ThisOption])
+      }).catch(err=>{
+        console.log(err);
+      })
+    })
+  }
   const GetPrice = ()=>{
     var Total = 0
-    data.Options.map(opt=>{
-     Total+=opt.Price
+    data.Options.map( opt=>{
+      Axios.get(`${API_URL}/Options/${opt.id}`).then( res=>{
+       res.data.SousOptions.map(SousOpt=>{
+         Total += Number(SousOpt.Price)
+       })
+       setPrice(Total);
+     })
     })
-    setPrice(Total)
   }
   
   return (

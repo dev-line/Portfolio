@@ -609,39 +609,3 @@ input[type=number]::-webkit-outer-spin-button {
       padding-bottom: 200px;
    }
   }
-
-  .btn-brand {
-    background: #646EFF;
-    border: #646EFF;
-    color: #fff;
-  }
-  
-  .btn-brand:hover {
-    background: #675ef3;
-    border: #675ef3;
-    color: #fff;
-  }
-  
-  .btn-soft-brand {
-    background: transparent;
-    border: 1px solid #646EFF;
-    color: #646EFF;
-  }
-  
-  .btn-soft-brand:hover {
-    background: #675ef3;
-    border: 1px solid #675ef3;
-    color: #fff;
-  }
-  
-  .text-brand {
-    color: #646EFF;
-  }
-
-  .bg-flat {
-    background: #252a34;
-    border: 30px solid #ff2e63;
-}
-#__next-prerender-indicator {
-   display: none;
- }
