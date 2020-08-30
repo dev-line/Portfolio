@@ -37,7 +37,7 @@ export default function EditOption() {
     const NewOption = {
       Name: Name.current.value,
       Price: Price.current.value,
-      Option: [id]
+      Option: id
     };
     console.log(NewOption);
     await Axios.post(`${API_URL}/Sous-Options`, NewOption, {

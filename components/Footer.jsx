@@ -35,26 +35,41 @@ export default function Footer() {
     {/* <!-- Social Networks --> */}
     {Status == "Done"?(
       <ul className="list-inline mb-0">
+      {Links.Facebook?(
       <li className="list-inline-item mb-2 mb-sm-0">
-        <a className="btn btn-icon btn-sm btn-secondary-f text-white rounded-circle" href={Links.Facebook}>
+        <a target="_blank" className="btn btn-icon btn-sm btn-secondary-f text-white rounded-circle" href={Links.Facebook}>
           <i className="fab fa-facebook-f"></i>
         </a>
-      </li>
-      <li className="list-inline-item mb-2 mb-sm-0">
-        <a className="btn btn-icon btn-sm btn-secondary-f text-white rounded-circle" href={Links.Twitter}>
+      </li>):""}
+
+      {Links.Twitter?(
+        <li className="list-inline-item mb-2 mb-sm-0">
+        <a target="_blank" className="btn btn-icon btn-sm btn-secondary-f text-white rounded-circle" href={Links.Twitter}>
           <i className="fab fa-twitter"></i>
         </a>
       </li>
-      <li className="list-inline-item mb-2 mb-sm-0">
-        <a className="btn btn-icon btn-sm btn-secondary-f text-white rounded-circle" href={Links.Instagram}>
+      ):""}
+     {Links.Instagram?(
+        <li className="list-inline-item mb-2 mb-sm-0">
+        <a target="_blank" className="btn btn-icon btn-sm btn-secondary-f text-white rounded-circle" href={Links.Instagram}>
           <i className="fab fa-instagram"></i>
         </a>
       </li>
-      <li className="list-inline-item mb-2 mb-sm-0">
-        <a className="btn btn-icon btn-sm btn-secondary-f text-white rounded-circle" href={Links.Youtube}>
+     ):""}
+      {Links.LinkedIn?(
+        <li className="list-inline-item mb-2 mb-sm-0">
+        <a target="_blank" className="btn btn-icon btn-sm btn-secondary-f text-white rounded-circle" href={Links.LinkedIn}>
+          <i className="fab fa-linkedin"></i>
+        </a>
+      </li>
+      ):""}
+      {Links.Youtube?(
+        <li className="list-inline-item mb-2 mb-sm-0">
+        <a target="_blank" className="btn btn-icon btn-sm btn-secondary-f text-white rounded-circle" href={Links.Youtube}>
           <i className="fab fa-youtube"></i>
         </a>
       </li>
+      ):""}
     </ul>
     ):"..."}
     {/* <!-- End Social Networks --> */}

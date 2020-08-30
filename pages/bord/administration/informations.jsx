@@ -15,6 +15,7 @@ export default function info() {
   const Facebook = useRef();
   const Instagram = useRef();
   const Twitter = useRef();
+  const LinkedIn = useRef();
   const Youtube = useRef();
   const Phone = useRef();
   const Address = useRef();
@@ -52,6 +53,7 @@ export default function info() {
       AboutMe: content,
       Facebook: Facebook.current.value,
       Instagram: Instagram.current.value,
+      LinkedIn: LinkedIn.current.value,
       Youtube: Youtube.current.value,
       Twitter: Twitter.current.value,
       Phone: Phone.current.value,
@@ -177,6 +179,33 @@ export default function info() {
                             placeholder="Lien de compte Twitter"
                             defaultValue={Infos.Twitter}
                             ref={Twitter}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-12 col-md-6 mb-3">
+                      {/* <!-- Password Input --> */}
+                      <div className="form-group">
+                        <label
+                          className="form-control-label small text-muted-f font-weight-bold"
+                          for="inputYt"
+                        >
+                          LinkedIn
+                        </label>
+                        <div className="input-group input-group-merge">
+                          <div className="input-group-prepend">
+                            <span className="input-group-text">
+                              <i className="fab fa-linkedin"></i>
+                            </span>
+                          </div>
+                          <input
+                            type="url"
+                            className="form-control form-control-sm text-muted"
+                            id="inputYt"
+                            placeholder="Lien de compte LinkedIn"
+                            data-toggle="password"
+                            defaultValue={Infos.LinkedIn}
+                            ref={LinkedIn}
                           />
                         </div>
                       </div>
