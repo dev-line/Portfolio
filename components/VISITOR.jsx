@@ -25,7 +25,7 @@ export default function VISITOR({ children,title }) {
   }, [])
   useEffect(() => {
     AOS.init();
-      $("#navMobile").modal("hide")
+      $("#navMobile").hide()
       $(".modal-backdrop").remove()
       $("body").css({
         "overflow": "auto",
