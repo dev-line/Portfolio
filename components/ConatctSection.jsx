@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import Axios from 'axios'
-import AOS from "aos";
 
 
 export default function ConatctSection() {
-useEffect(() => {
-  AOS.init();
-}, [])
+
   return (
     <div className="bg-sec spacer-80 spacer-lg-100">
     <div className="container">
