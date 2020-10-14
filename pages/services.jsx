@@ -35,7 +35,7 @@ export default function services() {
   return (
     <VISITOR title=" Services">
       {/* <!-- Hero --> */}
-      <div className="spacer-100 content-centered">
+      <div className="spacer-200" style={{height: `${80}vh`}}>
         {/* <!-- Cards Section --> */}
         <div className="container space-2">
           <div className="row mx-n2">
